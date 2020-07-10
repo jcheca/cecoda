@@ -1,8 +1,8 @@
-apt-get update
-apt-get upgrade -y
+yes | apt-get update
+yes | apt-get upgrade -y
 
-apt-get install nodejs
-apt-get install npm
+yes | apt-get install nodejs
+yes | apt-get install npm
 npm install -g --unsafe-perm node-red node-red-admin
 npm install -g pm2
 pm2 start /usr/local/bin/node-red -- -v
@@ -18,10 +18,10 @@ dpkg -i telegraf_1.14.5-1_amd64.deb
 systemctl enable telegraf
 systemctl start telegraf
 
-apt-get install -y gnupg2 curl  software-properties-common
+yes | apt-get install gnupg2 curl software-properties-common
 curl https://packages.grafana.com/gpg.key | sudo apt-key add -
 add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
-apt-get update
-apt install grafana
+yes | apt-get update
+yes | apt install grafana
 systemctl enable grafana-server
 systemctl start grafana-server
