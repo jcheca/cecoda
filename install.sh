@@ -12,6 +12,7 @@ wget https://dl.influxdata.com/influxdb/releases/influxdb_1.8.0_amd64.deb
 dpkg -i influxdb_1.8.0_amd64.deb
 systemctl enable influxdb
 systemctl start influxdb
+influx -execute "create database cecoda"
 
 wget https://dl.influxdata.com/telegraf/releases/telegraf_1.14.5-1_amd64.deb
 dpkg -i telegraf_1.14.5-1_amd64.deb
