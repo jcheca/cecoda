@@ -26,3 +26,5 @@ yes | apt-get update
 yes | apt install grafana
 systemctl enable grafana-server
 systemctl start grafana-server
+
+influx -execute "create database cecoda"
