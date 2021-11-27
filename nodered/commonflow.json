@@ -7,30 +7,17 @@
         "info": ""
     },
     {
-        "id": "5eb491.ff0e837",
-        "type": "influxdb out",
-        "z": "e092428b.886fc8",
-        "influxdb": "3977a85.b3d7958",
-        "name": "",
-        "measurement": "test",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 560,
-        "y": 140,
-        "wires": []
-    },
-    {
         "id": "d67b8418.c7fc48",
         "type": "inject",
         "z": "e092428b.886fc8",
         "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
         "x": 100,
         "y": 80,
         "wires": [
@@ -48,6 +35,9 @@
         "func": "var entero = global.get(\"entrada\");\nvar salida = flow.get(\"salida\");\nmsg = { payload: msg.payload,\n           nombre: \"José\",\n           apellido1: \"Claudel\",\n           entrada: \"entrada-mal\",\n           entrada2: entero,\n           salida: salida\n};\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 470,
         "y": 80,
         "wires": [
@@ -193,6 +183,9 @@
         "func": "msg.payload = msg.status.text;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 270,
         "y": 380,
         "wires": [
@@ -309,13 +302,13 @@
         "type": "inject",
         "z": "e092428b.886fc8",
         "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
         "x": 100,
         "y": 520,
         "wires": [
@@ -410,15 +403,127 @@
         "wires": []
     },
     {
+        "id": "5eb491.ff0e837",
+        "type": "influxdb out",
+        "z": "e092428b.886fc8",
+        "influxdb": "3977a85.b3d7958",
+        "name": "",
+        "measurement": "test",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 580,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "afe1c9b378bc9ac5",
+        "type": "influxdb in",
+        "z": "e092428b.886fc8",
+        "influxdb": "3977a85.b3d7958",
+        "name": "Consulta",
+        "query": "select * from test",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "organisation",
+        "x": 280,
+        "y": 920,
+        "wires": [
+            [
+                "02d39a9b27ee5a5c",
+                "d99ec541fea3c169"
+            ]
+        ]
+    },
+    {
+        "id": "589cc2cd4f97940f",
+        "type": "inject",
+        "z": "e092428b.886fc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 920,
+        "wires": [
+            [
+                "afe1c9b378bc9ac5"
+            ]
+        ]
+    },
+    {
+        "id": "02d39a9b27ee5a5c",
+        "type": "debug",
+        "z": "e092428b.886fc8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "f401c4c1e621b9d0",
+        "type": "comment",
+        "z": "e092428b.886fc8",
+        "name": "07.- Consulta Influx Query",
+        "info": "",
+        "x": 130,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "d99ec541fea3c169",
+        "type": "function",
+        "z": "e092428b.886fc8",
+        "name": "Media v01",
+        "func": "msg.registros = msg.payload.length;\n\nmedia = 0;\nfor (var i = 0; i < msg.payload.length; i++) {\n   media = media + msg.payload[i].v01;\n}\nmsg.media = media / msg.payload.length;\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 980,
+        "wires": [
+            [
+                "02d39a9b27ee5a5c"
+            ]
+        ]
+    },
+    {
         "id": "3977a85.b3d7958",
         "type": "influxdb",
-        "z": "",
         "hostname": "127.0.0.1",
         "port": "8086",
         "protocol": "http",
         "database": "telegraf",
         "name": "",
         "usetls": false,
-        "tls": ""
+        "tls": "",
+        "influxdbVersion": "1.x"
     }
 ]
