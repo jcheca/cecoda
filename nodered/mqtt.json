@@ -1,0 +1,124 @@
+[
+    {
+        "id": "9ab6f481d04df0a5",
+        "type": "tab",
+        "label": "5.- MQTT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6caeace514d85943",
+        "type": "mqtt in",
+        "z": "9ab6f481d04df0a5",
+        "name": "",
+        "topic": "v3/atd-ztemp@ttn/devices/+/up",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "a26ca4ca6a940d93",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "8ff57d28b4d8e439"
+            ]
+        ]
+    },
+    {
+        "id": "30ca981e72ef5157",
+        "type": "debug",
+        "z": "9ab6f481d04df0a5",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8ff57d28b4d8e439",
+        "type": "function",
+        "z": "9ab6f481d04df0a5",
+        "name": "",
+        "func": "msg.payload = {\n    device: msg.payload.end_device_ids.device_id,\n    temperature: msg.payload.uplink_message.decoded_payload.temperature,\n    battery: msg.payload.uplink_message.decoded_payload.battery\n\n    \n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "30ca981e72ef5157",
+                "bc2611b91002d407"
+            ]
+        ]
+    },
+    {
+        "id": "bc2611b91002d407",
+        "type": "influxdb out",
+        "z": "9ab6f481d04df0a5",
+        "influxdb": "3977a85.b3d7958",
+        "name": "",
+        "measurement": "sensores",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 720,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a26ca4ca6a940d93",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "eu1.cloud.thethings.network",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3977a85.b3d7958",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "telegraf",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x"
+    }
+]
