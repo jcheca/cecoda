@@ -1,2 +1,2 @@
 # cecoda
-Curso Cecoda Julio 10
+Curso Cecoda Noviembre 2021
