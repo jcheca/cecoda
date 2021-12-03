@@ -1,6 +1,6 @@
-* Instalación del Servidor en Clouding.io
+* Instalación del Servidor en Clouding.io *
 
-- Ubuntu Server 20 - Espacio Disco 10Gb
+- Ubuntu Server 20.04 - Espacio Disco 10Gb
 - Anotar la IP asignada, el usuario es "root" y anotar la clave.
 - Accedemos por SSH y cambiamos la clave. Salimos y entramos.
 
