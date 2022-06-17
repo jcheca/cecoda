@@ -1,0 +1,119 @@
+version: '3.1'
+
+services:
+
+  orion:
+    #image: fiware/orion:${ORION_VERSION:-2.4.0}
+    image: fiware/orion:3.1.0
+    hostname: ucoiot-orion
+    container_name: ucoiot-orion
+    ports:
+      - "1026:1026"
+    command: -logLevel INFO -corsOrigin __ALL -corsMaxAge 600 -noCache -dbhost ucoiot-mongo
+    depends_on:
+      - mongo
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:1026/version"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+
+  mongo:
+    image: mongo:4.1
+    hostname: ucoiot-mongo
+    container_name: ucoiot-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+      - mongoback:/dump
+      - mongoconf:/data/configdb
+
+  quantumleap:
+    image: smartsdk/quantumleap:${QL_IMAGE:-0.5}
+    hostname: ucoiot-quatum
+    container_name: ucoiot-quatum
+    ports:
+      - "8668:8668"
+    depends_on:
+      - mongo
+      - orion
+      - crate
+    environment:
+      - CRATE_HOST=${CRATE_HOST:-crate}
+      - USE_GEOCODING=True
+      - LOGLEVEL=ERROR
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  crate:
+    #image: crate:${CRATE_VERSION:-3.2.4}
+    image: crate:3.3.2
+    hostname: ucoiot-crate
+    container_name: ucoiot-crate
+    #command: crate -Clicense.enterprise=false -Cauth.host_based.enabled=false
+    #  -Ccluster.name=democluster -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
+    command: crate -Cdiscovery.type=single-node -Cauth.host_based.enabled=false
+      -Ccluster.name=democluster -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
+    environment:
+#      - JAVA_TOOL_OPTIONS="-Xms1G -Xmx1G"
+#      - CATALINA_OPTS="-Xms1G -Xmx1G"
+      - CRATE_HEAP_SIZE="8G"
+    ports:
+      # Admin UI
+      - "4200:4200"
+      # Transport protocol
+      - "4300:4300"
+    volumes:
+      - cratedata:/data
+
+  grafana:
+    image: grafana/grafana:8.1.2
+    user: "root"
+    hostname: ucoiot-grafana
+    container_name: ucoiot-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_PATHS_CONFIG=/var/lib/grafana/defaults.ini
+    depends_on:
+      - crate
+    volumes:
+      - grafanadt:/var/lib/grafana
+
+  redis:
+    image: redis
+    hostname: ucoiot-redis
+    container_name: ucoiot-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+  iotagent-lora:
+    image: ioeari/iotagent-lora
+    hostname: ucoiot-lora
+    container_name: ucoiot-lora
+    depends_on:
+      - mongo
+      - orion
+    volumes:
+      - ./iotagent-lora/config-docker.js:/opt/iotagent-lora/docker/config-docker.js
+      - ./iotagent-lora/ttnAppService.js:/opt/iotagent-lora/lib/applicationServers/ttnAppService.js
+    entrypoint: bin/iotagent-lora docker/config-docker.js
+    ports:
+      - "4061:4061"
+
+volumes:
+   mongodata:
+   mongoback:
+   mongoconf:
+   cratedata:
+   redisdata:
+   grafanadt:
+   
+
+networks:
+    default:
+        driver_opts:
+            com.docker.network.driver.mtu: ${DOCKER_MTU:-1400}
