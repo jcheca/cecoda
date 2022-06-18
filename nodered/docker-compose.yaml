@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nodered:
+    image: nodered/node-red:latest
+    hostname: ucoiot-nodered
+    container_name: ucoiot-nodered
+    ports:
+      - "1880:1880"
+      - "9000:9000/udp"
+    volumes:
+      - nodered:/data
+volumes:
+  nodered:
