@@ -3,7 +3,6 @@ version: '3.1'
 services:
 
   orion:
-    #image: fiware/orion:${ORION_VERSION:-2.4.0}
     image: fiware/orion:3.1.0
     hostname: ucoiot-orion
     container_name: ucoiot-orion
@@ -47,18 +46,13 @@ services:
       - REDIS_PORT=6379
 
   crate:
-    #image: crate:${CRATE_VERSION:-3.2.4}
     image: crate:3.3.2
     hostname: ucoiot-crate
     container_name: ucoiot-crate
-    #command: crate -Clicense.enterprise=false -Cauth.host_based.enabled=false
-    #  -Ccluster.name=democluster -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
     command: crate -Cdiscovery.type=single-node -Cauth.host_based.enabled=false
       -Ccluster.name=democluster -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
     environment:
-#      - JAVA_TOOL_OPTIONS="-Xms1G -Xmx1G"
-#      - CATALINA_OPTS="-Xms1G -Xmx1G"
-      - CRATE_HEAP_SIZE="8G"
+      - CRATE_HEAP_SIZE="2G"
     ports:
       # Admin UI
       - "4200:4200"
@@ -74,8 +68,6 @@ services:
     container_name: ucoiot-grafana
     ports:
       - "3000:3000"
-    environment:
-      - GF_PATHS_CONFIG=/var/lib/grafana/defaults.ini
     depends_on:
       - crate
     volumes:
