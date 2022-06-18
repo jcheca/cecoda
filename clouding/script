@@ -1,4 +1,4 @@
 #! /bin/bash
 apt install docker-compose -y >> /tmp/script.log
 apt install git -y >> /tmp/script.log
-git clone https://github.com/jcheca/cecoda.git /coag >> /tmp/script.log
+git clone https://github.com/jcheca/cecoda.git /root/coag >> /tmp/script.log
