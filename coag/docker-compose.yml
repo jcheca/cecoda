@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   orion:
-    image: fiware/orion:3.1.0
+    image: fiware/orion
     hostname: ucoiot-orion
     container_name: ucoiot-orion
     ports:
@@ -84,17 +84,26 @@ services:
 
   iotagent-lora:
     image: ioeari/iotagent-lora
-    hostname: ucoiot-lora
+    hostname: ucoiot-lora 
     container_name: ucoiot-lora
     depends_on:
       - mongo
       - orion
-    volumes:
-      - ./iotagent-lora/config-docker.js:/opt/iotagent-lora/docker/config-docker.js
-      - ./iotagent-lora/ttnAppService.js:/opt/iotagent-lora/lib/applicationServers/ttnAppService.js
-    entrypoint: bin/iotagent-lora docker/config-docker.js
+    expose:
+      - "4061"
     ports:
       - "4061:4061"
+    environment:
+      - "IOTA_CB_HOST=ucoiot-orion"
+      - "IOTA_CB_PORT=1026"
+      - "IOTA_NORTH_PORT=4061"
+      - "IOTA_REGISTRY_TYPE=mongodb"
+      - "IOTA_MONGO_HOST=ucoiot-mongo"
+      - "IOTA_MONGO_PORT=27017"
+      - "IOTA_MONGO_DB=iotagent-lorawan"
+      - "IOTA_PROVIDER_URL=http://ucoiot-lora:4061"
+
+
 
 volumes:
    mongodata:
