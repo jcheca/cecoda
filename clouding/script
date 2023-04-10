@@ -1,6 +1,6 @@
 #! /bin/bash
-apt install docker-compose -y >> /tmp/script.log
 git clone https://github.com/jcheca/cecoda.git /root/curso >> /tmp/script.log
+apt install docker-compose -y >> /tmp/script.log
 cat <<EOF >/etc/docker/daemon.json
 {
    "log-driver": "json-file",
@@ -9,4 +9,3 @@ cat <<EOF >/etc/docker/daemon.json
    }
 }
 EOF
-
