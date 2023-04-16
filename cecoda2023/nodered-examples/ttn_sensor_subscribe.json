@@ -1,0 +1,209 @@
+[
+    {
+        "id": "d96aad09e6ddfc1e",
+        "type": "tab",
+        "label": "TTN Sensor Subscribe",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "35a71235f4754c86",
+        "type": "json",
+        "z": "d96aad09e6ddfc1e",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "97abd554b4a2d458",
+                "18bdba22b129b7c6",
+                "d61ad7837c27b99a",
+                "f11205ba06fd42d8",
+                "b69fe7eec4791174",
+                "5790193fc49cd75c"
+            ]
+        ]
+    },
+    {
+        "id": "bc366faf4d21d903",
+        "type": "debug",
+        "z": "d96aad09e6ddfc1e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6ce44280144a78c0",
+        "type": "mqtt in",
+        "z": "d96aad09e6ddfc1e",
+        "name": "TTN",
+        "topic": "v3/atd-noise@ttn/devices/atd-noise-000/up",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1527d923777445c5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 160,
+        "wires": [
+            [
+                "35a71235f4754c86"
+            ]
+        ]
+    },
+    {
+        "id": "97abd554b4a2d458",
+        "type": "template",
+        "z": "d96aad09e6ddfc1e",
+        "name": "Payload analog_in_1 (mediaglobal)",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{ \"mediaglobal\": {{payload.uplink_message.decoded_payload.analog_in_1}} }",
+        "output": "json",
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "bc366faf4d21d903"
+            ]
+        ]
+    },
+    {
+        "id": "18bdba22b129b7c6",
+        "type": "template",
+        "z": "d96aad09e6ddfc1e",
+        "name": "Payload analog_in_2 (stdev)",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{ \"stdev\": {{payload.uplink_message.decoded_payload.analog_in_2}} }",
+        "output": "json",
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "bc366faf4d21d903"
+            ]
+        ]
+    },
+    {
+        "id": "d61ad7837c27b99a",
+        "type": "template",
+        "z": "d96aad09e6ddfc1e",
+        "name": "Payload digital_in_1 (moda)",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{ \"moda\": {{payload.uplink_message.decoded_payload.digital_in_1}} }",
+        "output": "json",
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "bc366faf4d21d903"
+            ]
+        ]
+    },
+    {
+        "id": "f11205ba06fd42d8",
+        "type": "template",
+        "z": "d96aad09e6ddfc1e",
+        "name": "Payload digital_in_2 (minimo)",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{ \"minimo\": {{payload.uplink_message.decoded_payload.digital_in_2}} }",
+        "output": "json",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "bc366faf4d21d903"
+            ]
+        ]
+    },
+    {
+        "id": "b69fe7eec4791174",
+        "type": "template",
+        "z": "d96aad09e6ddfc1e",
+        "name": "Payload digital_in_3 (máximo)",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{ \"maximo\": {{payload.uplink_message.decoded_payload.digital_in_3}} }",
+        "output": "json",
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "bc366faf4d21d903"
+            ]
+        ]
+    },
+    {
+        "id": "5790193fc49cd75c",
+        "type": "template",
+        "z": "d96aad09e6ddfc1e",
+        "name": "Payload digital_in_4 (pasos)",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{ \"pasos\": {{payload.uplink_message.decoded_payload.digital_in_4}} }",
+        "output": "json",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "bc366faf4d21d903"
+            ]
+        ]
+    },
+    {
+        "id": "1527d923777445c5",
+        "type": "mqtt-broker",
+        "name": "TTN",
+        "broker": "eu1.cloud.thethings.network",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

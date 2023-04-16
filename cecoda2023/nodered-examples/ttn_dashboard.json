@@ -1,0 +1,466 @@
+[
+    {
+        "id": "b75008b8d58746a7",
+        "type": "tab",
+        "label": "TTN Sensor Subscribe (Dash)",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3567587d4fdfe8e5",
+        "type": "json",
+        "z": "b75008b8d58746a7",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 210,
+        "y": 40,
+        "wires": [
+            [
+                "f0520d933ab07f59",
+                "8f8f210d29cee6c9",
+                "797ecf2f3859dc99",
+                "171f8a33b7cbb090",
+                "eb7e224c34bd59c0",
+                "874a16f8b69b8c9e"
+            ]
+        ]
+    },
+    {
+        "id": "c3a0ae09fa4ebf66",
+        "type": "mqtt in",
+        "z": "b75008b8d58746a7",
+        "name": "TTN",
+        "topic": "v3/atd-noise@ttn/devices/atd-noise-000/up",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1527d923777445c5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 40,
+        "wires": [
+            [
+                "3567587d4fdfe8e5"
+            ]
+        ]
+    },
+    {
+        "id": "f0520d933ab07f59",
+        "type": "function",
+        "z": "b75008b8d58746a7",
+        "name": "payload analog_in_1 (mediaglobal)",
+        "func": "msg.payload = msg.payload.uplink_message.decoded_payload.analog_in_1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 40,
+        "wires": [
+            [
+                "65d204b6cd20bca3",
+                "144667b9592dc51e",
+                "9a48627a1d504e20"
+            ]
+        ]
+    },
+    {
+        "id": "8f8f210d29cee6c9",
+        "type": "function",
+        "z": "b75008b8d58746a7",
+        "name": "payload analog_in_2 (stdev)",
+        "func": "msg.payload = msg.payload.uplink_message.decoded_payload.analog_in_2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "c0d0c7018eb6baa8"
+            ]
+        ]
+    },
+    {
+        "id": "797ecf2f3859dc99",
+        "type": "function",
+        "z": "b75008b8d58746a7",
+        "name": "payload digital_in_1 (moda)",
+        "func": "msg.payload = msg.payload.uplink_message.decoded_payload.digital_in_1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 260,
+        "wires": [
+            [
+                "3f3878d5ef5e0e7d"
+            ]
+        ]
+    },
+    {
+        "id": "171f8a33b7cbb090",
+        "type": "function",
+        "z": "b75008b8d58746a7",
+        "name": "payload digital_in_2 (minimo)",
+        "func": "msg.payload = msg.payload.uplink_message.decoded_payload.digital_in_2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 340,
+        "wires": [
+            [
+                "b1133f1e79230c7c"
+            ]
+        ]
+    },
+    {
+        "id": "eb7e224c34bd59c0",
+        "type": "function",
+        "z": "b75008b8d58746a7",
+        "name": "payload digital_in_3 (maximo)",
+        "func": "msg.payload = msg.payload.uplink_message.decoded_payload.digital_in_3;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "774c2f8449303167"
+            ]
+        ]
+    },
+    {
+        "id": "874a16f8b69b8c9e",
+        "type": "function",
+        "z": "b75008b8d58746a7",
+        "name": "payload digital_in_4 (pasos)",
+        "func": "msg.payload = msg.payload.uplink_message.decoded_payload.digital_in_4;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 460,
+        "wires": [
+            [
+                "e2b9a6e8262f6a48"
+            ]
+        ]
+    },
+    {
+        "id": "c0d0c7018eb6baa8",
+        "type": "ui_gauge",
+        "z": "b75008b8d58746a7",
+        "name": "",
+        "group": "a49dcc5f09a8dcbb",
+        "order": 1,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Desviación Típica",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 730,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3f3878d5ef5e0e7d",
+        "type": "ui_gauge",
+        "z": "b75008b8d58746a7",
+        "name": "",
+        "group": "fac15b37cc91eec6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Moda",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 690,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b1133f1e79230c7c",
+        "type": "ui_gauge",
+        "z": "b75008b8d58746a7",
+        "name": "",
+        "group": "255b159966d15797",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Mínimo",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "774c2f8449303167",
+        "type": "ui_gauge",
+        "z": "b75008b8d58746a7",
+        "name": "",
+        "group": "255b159966d15797",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Máximo",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "e2b9a6e8262f6a48",
+        "type": "ui_gauge",
+        "z": "b75008b8d58746a7",
+        "name": "",
+        "group": "a49dcc5f09a8dcbb",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Pasos",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 690,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "65d204b6cd20bca3",
+        "type": "ui_gauge",
+        "z": "b75008b8d58746a7",
+        "name": "",
+        "group": "fac15b37cc91eec6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Media Global",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 710,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "144667b9592dc51e",
+        "type": "ui_chart",
+        "z": "b75008b8d58746a7",
+        "name": "",
+        "group": "a49dcc5f09a8dcbb",
+        "order": 3,
+        "width": 6,
+        "height": 4,
+        "label": "Media Global",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 710,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a48627a1d504e20",
+        "type": "ui_toast",
+        "z": "b75008b8d58746a7",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 730,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1527d923777445c5",
+        "type": "mqtt-broker",
+        "name": "TTN",
+        "broker": "eu1.cloud.thethings.network",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a49dcc5f09a8dcbb",
+        "type": "ui_group",
+        "name": "",
+        "tab": "bc52cdf09b286960",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fac15b37cc91eec6",
+        "type": "ui_group",
+        "name": "",
+        "tab": "bc52cdf09b286960",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "255b159966d15797",
+        "type": "ui_group",
+        "name": "",
+        "tab": "bc52cdf09b286960",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "bc52cdf09b286960",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
