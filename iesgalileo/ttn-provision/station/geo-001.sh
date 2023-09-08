@@ -1,6 +1,6 @@
 # Estatic Info
 curl -X POST \
-  http://localhost:1026/v2/entities/urn:ngsi-ld:ws522:ws522-001/attrs \
+  http://localhost:1026/v2/entities/urn:ngsi-ld:station01:sta-001/attrs \
   -H 'Content-Type: application/json' \
   -H 'Fiware-Service: galileo' \
   -H 'Fiware-ServicePath: /cordoba' \
