@@ -8,47 +8,47 @@ curl localhost:4061/iot/devices -s -S --header 'Content-Type: application/json' 
     "attributes": [
         {
             "object_id": "S1-BatV",
-            "name": "S1-BatV",
+            "name": "battery",
             "type": "Number"
         },
         {
             "object_id": "S1-H_in",
-            "name": "S1-H_in",
+            "name": "humidity_in",
             "type": "Number"
         },
         {
             "object_id": "S1-T_in",
-            "name": "S1-T_in",
+            "name": "temperature_in",
             "type": "Number"
         },
         {
             "object_id": "S2-VWC1",
-            "name": "S2-VWC1",
+            "name": "vwc",
             "type": "Number"
         },
         {
             "object_id": "S3-h",
-            "name": "S3-h",
+            "name": "humidity_leaf",
             "type": "Number"
         },
         {
             "object_id": "S4-H",
-            "name": "S4-H",
+            "name": "humidity",
             "type": "Number"
         },
         {
             "object_id": "S4-P",
-            "name": "S4-P",
+            "name": "pressure",
             "type": "Number"
         },
         {
             "object_id": "S4-T",
-            "name": "S4-T",
+            "name": "temperature",
             "type": "Number"
         },
         {
             "object_id": "S5-C",
-            "name": "S4-C",
+            "name": "pulse_counter",
             "type": "Number"
         }
     ],

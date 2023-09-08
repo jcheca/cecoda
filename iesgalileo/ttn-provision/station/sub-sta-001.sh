@@ -11,7 +11,7 @@ curl localhost:1026/v2/subscriptions -s -S --header 'Content-Type: application/j
             ],
             "condition": {
                 "attrs": [
-                    "S1-BatV","S1-H_in","S1-T_in","S2-VWC1","S3-h","S4-H","S4-P","S4-T","S5-C"
+                    "battery","humidity_in","temperature_in","vwc","humidity_leaf","humidity","pressure","temperature","pulse_counter"
                 ]
             }
         },
@@ -20,7 +20,7 @@ curl localhost:1026/v2/subscriptions -s -S --header 'Content-Type: application/j
                 "url": "http://quantumleap:8668/v2/notify"
             },
             "attrs": [
-                    "S1-BatV","S1-H_in","S1-T_in","S2-VWC1","S3-h","S4-H","S4-P","S4-T","S5-C"
+                    "battery","humidity_in","temperature_in","vwc","humidity_leaf","humidity","pressure","temperature","pulse_counter"
             ],
             "metadata": ["dateCreated", "dateModified"]
         },
