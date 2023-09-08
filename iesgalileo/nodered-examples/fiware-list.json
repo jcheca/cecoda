@@ -1,0 +1,85 @@
+[
+    {
+        "id": "372b5a6372a50be0",
+        "type": "tab",
+        "label": "FiWARE LIST",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bedef527724c7614",
+        "type": "NGSI Types",
+        "z": "372b5a6372a50be0",
+        "name": "",
+        "openapis": "6883df9e1a0fc4c8",
+        "servicepath": "/rabanales",
+        "actionType": "types",
+        "entityType": "",
+        "values": "false",
+        "noAttrDetail": "false",
+        "x": 250,
+        "y": 60,
+        "wires": [
+            [
+                "9f4949106af64623"
+            ]
+        ]
+    },
+    {
+        "id": "59249f213236cc69",
+        "type": "inject",
+        "z": "372b5a6372a50be0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 60,
+        "wires": [
+            [
+                "bedef527724c7614"
+            ]
+        ]
+    },
+    {
+        "id": "9f4949106af64623",
+        "type": "debug",
+        "z": "372b5a6372a50be0",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "6883df9e1a0fc4c8",
+        "type": "Open APIs",
+        "name": "ATDFiware Server",
+        "geType": "orion",
+        "apiEndpoint": "http://217.71.204.15:1026",
+        "service": "smarttrebol",
+        "idmEndpoint": "",
+        "idmType": "none"
+    }
+]

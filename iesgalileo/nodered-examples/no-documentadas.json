@@ -1,0 +1,125 @@
+[
+    {
+        "id": "c4e7538e.f2dfc8",
+        "type": "tab",
+        "label": "No-Documentadas",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5790baed.b1b924",
+        "type": "inject",
+        "z": "c4e7538e.f2dfc8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "5c295bf1.a9178c"
+            ]
+        ]
+    },
+    {
+        "id": "5c295bf1.a9178c",
+        "type": "http request",
+        "z": "c4e7538e.f2dfc8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "https://www.thethingsnetwork.org/gateway-data/location?latitude=37.915573&longitude=-4.7190437&distance=50000",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 300,
+        "y": 120,
+        "wires": [
+            [
+                "c2253f63.cc53a"
+            ]
+        ]
+    },
+    {
+        "id": "c2253f63.cc53a",
+        "type": "debug",
+        "z": "c4e7538e.f2dfc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 580,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c720e53e.b954b8",
+        "type": "comment",
+        "z": "c4e7538e.f2dfc8",
+        "name": "Peticiones HTTP Córdoba",
+        "info": "# Córdoba\nhttps://www.thethingsnetwork.org/gateway-data/location?latitude=37.915573&longitude=-4.7190437&distance=50000\n# Mundo\nhttps://www.thethingsnetwork.org/gateway-data/country/es\n# España\nhttps://www.thethingsnetwork.org/gateway-data/\n# Concreto\nhttp://noc.thethingsnetwork.org:8085/api/v2/gateways/uco",
+        "x": 150,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "3eb19fdc.f4cd2",
+        "type": "inject",
+        "z": "c4e7538e.f2dfc8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 260,
+        "wires": [
+            [
+                "1e817aaf.74cf8d"
+            ]
+        ]
+    },
+    {
+        "id": "1e817aaf.74cf8d",
+        "type": "http request",
+        "z": "c4e7538e.f2dfc8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "http://noc.thethingsnetwork.org:8085/api/v2/gateways/uco",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "c2253f63.cc53a"
+            ]
+        ]
+    },
+    {
+        "id": "526f7e0a.c76d08",
+        "type": "comment",
+        "z": "c4e7538e.f2dfc8",
+        "name": "Peticiones de Gateway UCO",
+        "info": "",
+        "x": 140,
+        "y": 200,
+        "wires": []
+    }
+]

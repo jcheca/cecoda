@@ -1,0 +1,260 @@
+[
+    {
+        "id": "7138539a.b7c5a4",
+        "type": "tab",
+        "label": "1.Initial Flows",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1421cf55.aca9c1",
+        "type": "inject",
+        "z": "7138539a.b7c5a4",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "cecoda",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "f21a9f79.3da1c"
+            ]
+        ]
+    },
+    {
+        "id": "f21a9f79.3da1c",
+        "type": "debug",
+        "z": "7138539a.b7c5a4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 670,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "43a391e7.6672a",
+        "type": "inject",
+        "z": "7138539a.b7c5a4",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 240,
+        "wires": [
+            [
+                "80fd231b.304ee",
+                "9a125e7c.b07088",
+                "9decfe5c.e3826"
+            ]
+        ]
+    },
+    {
+        "id": "34baeff6.82958",
+        "type": "debug",
+        "z": "7138539a.b7c5a4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 690,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "80fd231b.304ee",
+        "type": "http request",
+        "z": "7138539a.b7c5a4",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://atdfiware.grayhats.com/opendata/ztemp",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "6cd7e6d2.1b7ef"
+            ]
+        ]
+    },
+    {
+        "id": "6cd7e6d2.1b7ef",
+        "type": "function",
+        "z": "7138539a.b7c5a4",
+        "name": "compose ztemp",
+        "func": "msg.payload = {vrms: msg.payload[0].temperature.value,\n               irms: msg.payload[0].battery.value\n    \n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "34baeff6.82958"
+            ]
+        ]
+    },
+    {
+        "id": "2b82ad6b.0d94f2",
+        "type": "comment",
+        "z": "7138539a.b7c5a4",
+        "name": "First Flow",
+        "info": "El primer flow: sólo generamos el inicio de un prográma forzándolo con el inject y mostramos la información en la ventana de depuración.",
+        "x": 100,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "dbe158bc.d13068",
+        "type": "comment",
+        "z": "7138539a.b7c5a4",
+        "name": "Second Flow",
+        "info": "Capturamos los datos en formato JSON de una URL de Open Data in Real Time del Aula de Transformación Digital FiWare.",
+        "x": 110,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9a125e7c.b07088",
+        "type": "http request",
+        "z": "7138539a.b7c5a4",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://atdfiware.grayhats.com/opendata/atd-loc2115",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "fc13fb4.0fd1e88"
+            ]
+        ]
+    },
+    {
+        "id": "fc13fb4.0fd1e88",
+        "type": "function",
+        "z": "7138539a.b7c5a4",
+        "name": "compose climate station",
+        "func": "msg.payload = {evat: msg.payload.evatranspiracion.value,\n               humecth: msg.payload.humectacionhoja.value,\n\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 340,
+        "wires": [
+            [
+                "34baeff6.82958"
+            ]
+        ]
+    },
+    {
+        "id": "9decfe5c.e3826",
+        "type": "http request",
+        "z": "7138539a.b7c5a4",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://atdfiware.grayhats.com/opendata/em300sld",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 460,
+        "wires": [
+            [
+                "d29cbb39.a13bd"
+            ]
+        ]
+    },
+    {
+        "id": "d29cbb39.a13bd",
+        "type": "function",
+        "z": "7138539a.b7c5a4",
+        "name": "compose waterleak",
+        "func": "msg.payload = {humidity: msg.payload[0].humidity.value,\n               temperature: msg.payload[0].temperature.value,\n               altwleak: msg.payload[0].water_leak_int.value\n\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 460,
+        "wires": [
+            [
+                "34baeff6.82958"
+            ]
+        ]
+    },
+    {
+        "id": "883f9a3c.b94608",
+        "type": "comment",
+        "z": "7138539a.b7c5a4",
+        "name": "https://atdfiware.grayhats.com/opendata/atd-loc2115",
+        "info": "",
+        "x": 400,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "111d550b.d4921b",
+        "type": "comment",
+        "z": "7138539a.b7c5a4",
+        "name": "https://atdfiware.grayhats.com/opendata/em300sld",
+        "info": "",
+        "x": 390,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d0c1a12.e1dabe",
+        "type": "comment",
+        "z": "7138539a.b7c5a4",
+        "name": "https://atdfiware.grayhats.com/opendata/ztemp",
+        "info": "",
+        "x": 220,
+        "y": 200,
+        "wires": []
+    }
+]

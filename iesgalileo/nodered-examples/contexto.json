@@ -1,0 +1,105 @@
+[
+    {
+        "id": "97396158.b23f68",
+        "type": "tab",
+        "label": "3.Contexto",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1b9ccad4.062ed5",
+        "type": "inject",
+        "z": "97396158.b23f68",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 120,
+        "wires": [
+            [
+                "4fc8ef66.6af49",
+                "3d3269d3.40b31e"
+            ]
+        ]
+    },
+    {
+        "id": "4fc8ef66.6af49",
+        "type": "change",
+        "z": "97396158.b23f68",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "global01",
+                "pt": "global",
+                "to": "CECODA",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "flow01",
+                "pt": "flow",
+                "to": "1500",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 120,
+        "wires": [
+            [
+                "881b2ac8.ec7fa8"
+            ]
+        ]
+    },
+    {
+        "id": "881b2ac8.ec7fa8",
+        "type": "debug",
+        "z": "97396158.b23f68",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 510,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3d3269d3.40b31e",
+        "type": "function",
+        "z": "97396158.b23f68",
+        "name": "set/get context",
+        "func": "global.set(\"global02\",\"Curso\");\n\nmsg.nueva = global.get(\"global01\");\nmsg.nuevo = flow.get(\"flow01\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "881b2ac8.ec7fa8"
+            ]
+        ]
+    },
+    {
+        "id": "9f624824.583a38",
+        "type": "comment",
+        "z": "97396158.b23f68",
+        "name": "Contexto",
+        "info": "Evaluación y utilización del Contexto de Node-Red.\n\nVamos a utilizar Node-Change y líneas de programación en Funciones para establecer y leer variables de contexto Global/Flow.",
+        "x": 100,
+        "y": 80,
+        "wires": []
+    }
+]

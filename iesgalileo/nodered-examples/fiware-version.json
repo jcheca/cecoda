@@ -1,0 +1,79 @@
+[
+    {
+        "id": "b9afaeeb2e01941f",
+        "type": "tab",
+        "label": "FIWARE VERSION",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8f1097082788f3de",
+        "type": "FIWARE version",
+        "z": "b9afaeeb2e01941f",
+        "name": "ATDFIWARE Server",
+        "openapis": "6883df9e1a0fc4c8",
+        "x": 310,
+        "y": 80,
+        "wires": [
+            [
+                "e1809651bc840afc"
+            ]
+        ]
+    },
+    {
+        "id": "ccdf32ac81852702",
+        "type": "inject",
+        "z": "b9afaeeb2e01941f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "8f1097082788f3de"
+            ]
+        ]
+    },
+    {
+        "id": "e1809651bc840afc",
+        "type": "debug",
+        "z": "b9afaeeb2e01941f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6883df9e1a0fc4c8",
+        "type": "Open APIs",
+        "name": "ATDFiware Server",
+        "geType": "orion",
+        "apiEndpoint": "http://217.71.204.15:1026",
+        "service": "smarttrebol",
+        "idmEndpoint": "",
+        "idmType": "none"
+    }
+]

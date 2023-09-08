@@ -1,0 +1,101 @@
+[
+    {
+        "id": "9bda73f0.207648",
+        "type": "tab",
+        "label": "2.Messages",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "44cead32.19c36c",
+        "type": "inject",
+        "z": "9bda73f0.207648",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "75edb419.ab9ef4"
+            ]
+        ]
+    },
+    {
+        "id": "75edb419.ab9ef4",
+        "type": "function",
+        "z": "9bda73f0.207648",
+        "name": "setstruct",
+        "func": "msg.valor01 = 100;\nmsg.valor02 = \"Cadena de Caracteres\";\nmsg.valor03 = [1,2,3];\nmsg.valor04 = [\"a\",\"b\",\"c\"];\nmsg.valor05 = { parametro1: 100,\n                parametro2: \"Cadena Objeto\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 240,
+        "y": 100,
+        "wires": [
+            [
+                "4ed4b187.8b929"
+            ]
+        ]
+    },
+    {
+        "id": "4ed4b187.8b929",
+        "type": "function",
+        "z": "9bda73f0.207648",
+        "name": "readstruct",
+        "func": "msg.payload = msg.valor05.parametro2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "3ba03395.3b31e4"
+            ]
+        ]
+    },
+    {
+        "id": "bd83c41.90b0f38",
+        "type": "debug",
+        "z": "9bda73f0.207648",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 530,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3ba03395.3b31e4",
+        "type": "debug",
+        "z": "9bda73f0.207648",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 550,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "52c72f0a.6f4ba",
+        "type": "comment",
+        "z": "9bda73f0.207648",
+        "name": "Ejemplo de crear/leer valores en MSG",
+        "info": "El mensaje es el objeto compartido de comunicación entre los nodos. Los mensajes llevan la información que produce cada nodo concreto estrucutrada según indique su información.\n\nPara poder practicar la lectura del objeto mensaje vamos a modificar un MSG para poner valores de todo tipo para después leerlos.",
+        "x": 170,
+        "y": 60,
+        "wires": []
+    }
+]
