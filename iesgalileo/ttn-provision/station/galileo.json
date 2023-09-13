@@ -1,0 +1,19 @@
+  {
+        "ids": {
+            "device_id": "sta-001",
+            "dev_eui": "000000003A0695DE",
+            "join_eui": "24E124C0002A0001"
+
+        },
+        "name": "sta-001 (7GVMZT)",
+        "description": "Cesens IES Galileo Galilei.",
+        "lorawan_version": "MAC_V1_0_1",
+        "lorawan_phy_version": "TS001_V1_0_1",
+        "frequency_plan_id": "EU_863_870_TTN",
+        "supports_join": true,
+        "root_keys": {
+            "app_key": {
+                "key": "06504D6122A2F853FC7D39D02C5B562C"
+            }
+        }
+    }
