@@ -1,30 +1,30 @@
 [
     {
-        "id": "b9afaeeb2e01941f",
+        "id": "e94c331be9502e50",
         "type": "tab",
-        "label": "FIWARE VERSION",
+        "label": "FIWARE Version CB",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "8f1097082788f3de",
+        "id": "906672f03363c893",
         "type": "FIWARE version",
-        "z": "b9afaeeb2e01941f",
-        "name": "ATDFIWARE Server",
-        "openapis": "6883df9e1a0fc4c8",
-        "x": 310,
+        "z": "e94c331be9502e50",
+        "name": "FIWARE Galileo",
+        "openapis": "fcc5c8fd8e19ca23",
+        "x": 320,
         "y": 80,
         "wires": [
             [
-                "e1809651bc840afc"
+                "62ce44c6fda5e3ba"
             ]
         ]
     },
     {
-        "id": "ccdf32ac81852702",
+        "id": "1dbafe077270a81d",
         "type": "inject",
-        "z": "b9afaeeb2e01941f",
+        "z": "e94c331be9502e50",
         "name": "",
         "props": [
             {
@@ -46,33 +46,34 @@
         "y": 80,
         "wires": [
             [
-                "8f1097082788f3de"
+                "906672f03363c893"
             ]
         ]
     },
     {
-        "id": "e1809651bc840afc",
+        "id": "62ce44c6fda5e3ba",
         "type": "debug",
-        "z": "b9afaeeb2e01941f",
-        "name": "debug 2",
+        "z": "e94c331be9502e50",
+        "name": "debug 1",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 480,
+        "x": 540,
         "y": 80,
         "wires": []
     },
     {
-        "id": "6883df9e1a0fc4c8",
+        "id": "fcc5c8fd8e19ca23",
         "type": "Open APIs",
-        "name": "ATDFiware Server",
+        "name": "FIWARE",
         "geType": "orion",
-        "apiEndpoint": "http://217.71.204.15:1026",
-        "service": "smarttrebol",
+        "apiEndpoint": "http://ucoiot-orion:1026",
+        "service": "galileo",
         "idmEndpoint": "",
         "idmType": "none"
     }

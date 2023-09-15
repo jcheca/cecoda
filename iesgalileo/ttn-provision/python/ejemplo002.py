@@ -5,7 +5,7 @@ import requests
 import json
 
 # Fiware Context Broker: Orion
-orion_server = '161.22.45.53'
+orion_server = '161.22.45.53:1026'
 orion_endpoint = '/v2'
 
 # Fiware STH: Quantum

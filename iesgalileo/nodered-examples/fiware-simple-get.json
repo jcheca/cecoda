@@ -2,7 +2,7 @@
     {
         "id": "1d0f6947067aeea5",
         "type": "tab",
-        "label": "CECODA-FiWARE",
+        "label": "GALILEO-FiWARE",
         "disabled": false,
         "info": "",
         "env": []
@@ -11,16 +11,16 @@
         "id": "52c44f79b077162d",
         "type": "NGSI source",
         "z": "1d0f6947067aeea5",
-        "name": "Cecoda Server",
-        "openapis": "6883df9e1a0fc4c8",
-        "servicepath": "/rabanales",
+        "name": "Galielo Server (noise)",
+        "openapis": "fcc5c8fd8e19ca23",
+        "servicepath": "/cordoba",
         "mode": "keyValues",
         "entitytype": "atdnoise",
         "idpattern": "urn:ngsi-ld:atdnoise:atd-noise-000",
         "attrs": "",
         "query": "",
         "buffering": "off",
-        "x": 340,
+        "x": 360,
         "y": 40,
         "wires": [
             [
@@ -53,6 +53,7 @@
         "y": 40,
         "wires": [
             [
+                "148d5d97e1d198ef",
                 "52c44f79b077162d"
             ]
         ]
@@ -75,12 +76,33 @@
         "wires": []
     },
     {
-        "id": "6883df9e1a0fc4c8",
+        "id": "148d5d97e1d198ef",
+        "type": "NGSI source",
+        "z": "1d0f6947067aeea5",
+        "name": "Galielo Server (station)",
+        "openapis": "fcc5c8fd8e19ca23",
+        "servicepath": "/cordoba",
+        "mode": "keyValues",
+        "entitytype": "station01",
+        "idpattern": "urn:ngsi-ld:station01:sta-001",
+        "attrs": "",
+        "query": "",
+        "buffering": "off",
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "e92a1fc35aee6fbf"
+            ]
+        ]
+    },
+    {
+        "id": "fcc5c8fd8e19ca23",
         "type": "Open APIs",
-        "name": "ATDFiware Server",
+        "name": "FIWARE",
         "geType": "orion",
-        "apiEndpoint": "http://217.71.204.15:1026",
-        "service": "smarttrebol",
+        "apiEndpoint": "http://ucoiot-orion:1026",
+        "service": "galileo",
         "idmEndpoint": "",
         "idmType": "none"
     }
